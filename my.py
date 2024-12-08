@@ -47,7 +47,7 @@ def mod_password(Account, Email, Password, data):
 
 def print_accounts(Account, data):
     print("gli accounts attualmente registrati sono:\n")
-    if Account == {}:
+    if not Account:
         for account in data.keys():
             print(account)
     else:
