@@ -1,4 +1,5 @@
 import json
+import time
 
 #funzione per caricare i dati dell'app
 def load_data(file_name = "passwords.json"):
@@ -42,28 +43,29 @@ def print_accounts(data):
 
 
 def print_accounts(Account, data):
-    print("gli accounts attualmente registrati sono:\n")
     with open ("passwords.json", "r") as file:
         data_show = json.load(file)
     if not Account:
+        print("\n\ngli accounts attualmente registrati sono:\n")
         for account in data_show.keys():
-            print(json.dumps(data, indent=4))
+            print(account)
     else:
-        for account in data_show.keys():
-            if Account in data.show.keys():
-                print(Account.keys())
-            else:
-                print(f"non ho trovato {Account}\n")
+        if Account in data_show.keys():
+            print(f"l'Email: {data[Account]['Email']}\nla Password:{data[Account]['Password']}\n")
+        else:
+            print(f"non ho trovato un'account chiamato \"{Account}\"\n")
+    time.sleep(2)
+    print("\n\n______________________\n\n")
 
 x= True
 while x == True:
     mode = input("\nPremi:\n1 per aggiungere una nuova password\n2 per aggiornare una password esistente\n3 per eliminare una password\n4 per navigare fra le password\n\nPREMI 5 PER FARE IL LOGOUT\n")
     if int(mode) == 1:
-        target = input("\n\ncosa vuoi vedere?\n1 per vedere gli account disponibili\n2 per vedere un'account specifico\n")
+        target = input("\n\ncosa vuoi vedere?\n1 per vedere gli account disponibili\n2 per vedere un'account specifico\n\n")
         if int(target) == 1:
-            print_accounts(data)
+            print_accounts(None, data)
         elif int(target) == 2:
-            Account = input("Quale credenziali vuoi vedere?\n\n")
+            Account = input("\nQuale credenziali vuoi vedere?\n")
             print_accounts(Account, data)
             continue
         else:
